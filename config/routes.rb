@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  #TODO: rootパス設定を行う
   devise_for :farmers do
     get '/farmers/sign_in' => 'farmar/sessions#new', as: :new_farmar_session
     post '/farmers/sign_in' => 'farmar/sessions#create', as: :farmar_session

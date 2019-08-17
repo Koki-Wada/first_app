@@ -1,2 +1,21 @@
 <h1>Home#top</h1>
 <p>Find me in app/views/home/top.html.erb</p>
+
+<h1>ログインアプリ</h1>
+
+<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+  <!-- ユーザーがログインしていた時の処理 -->
+
+  <h4> メールアドレス： <%= current_user.email %> </h4>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+<% elsif farmer_signed_in? %>
+  <h4> メールアドレス： <%= current_farmer.email %> </h4>
+  <%= link_to "ログアウト", destroy_farmer_session_path, method: :delete %> <!-- ログアウトをする -->
+<% else %>
+  <!-- ユーザーがログインしていなかった時の処理 -->
+  <h2> 現在ログインしていません </h2>
+  <%= link_to "購入者ログイン", new_user_session_path, class: 'post' %> <!-- 購入者ログイン画面に移行する -->
+  <%= link_to "購入者新規登録", new_user_registration_path, class: 'post' %> <!-- 購入者の新規登録画面に移行する -->
+  <%= link_to "農家ログイン", new_farmer_session_path, class: 'post' %> <!-- 農家ログイン画面に移行する -->
+  <%= link_to "農家新規登録", new_farmer_registration_path, class: 'post' %> <!-- 農家の新規登録画面に移行する -->
+<% end %>
